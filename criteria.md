@@ -51,63 +51,43 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy is above the majority class
 
-<!-- Your criterion. It must name a number. -->
+**Criterion:** Overall accuracy on the held-out test split is at least 0.65, in each of the three seeds.
 
-
-
-**Why this target:**
-
-
+**Why this target:** In the 20 posts I read, 10 were `question` — about half. If that share holds in my 200, a model that always predicts `question` already scores around 0.50. 0.65 is 15 points above that, so it cannot be reached by learning the majority label alone.
 
 ---
 
-## 2.
+## 2. Every label clears a floor
 
-<!-- Your criterion. -->
+**Criterion:** Every label has an F1 of at least 0.50 on the test split, in all three seeds.
 
-
-
-**Why this target:**
-
-
+**Why this target:** `experience` and `resource` are about a quarter of my posts each, so roughly 50 examples each; a 15% test split leaves only 7–8 posts per label. On 7 posts every single error moves F1 by about 0.14, so 0.50 is the floor I can ask of the two small labels. Asking for the same score as `question` would be measuring the split, not the model.
 
 ---
 
-## 3.
+## 3. All three labels work together
 
-<!-- Your criterion. -->
+**Criterion:** Macro F1 on the test split is at least 0.60, in all three seeds.
 
-
-
-**Why this target:**
-
-
+**Why this target:** Accuracy is dominated by `question`. Macro F1 weights the three labels equally, so it drops if the model quietly ignores `experience` or `resource` while still getting `question` right. 0.60 is the point where all three labels have to be working, not just the big one.
 
 ---
 
-## 4.
+## 4. Confidence separates the sure from the unsure
 
-<!-- Your criterion. -->
+**Criterion:** Accuracy on the most-confident third of the test split exceeds accuracy on the least-confident third by at least 0.15, in all three seeds.
 
-
-
-**Why this target:**
-
-
+**Why this target:** `results.json` already reports both thirds. With about 30 test posts, each third holds roughly 10, so a 0.15 gap is about one and a half posts — one lucky post would not create it, and a model that is genuinely better when it is sure clears it. A smaller gap would be indistinguishable from noise.
 
 ---
 
-## 5.
+## 5. My labels agree with the staff labels
 
-<!-- Your criterion. -->
+**Criterion:** My agreement with the staff labels is at least 20/30 (67%).
 
-
-
-**Why this target:**
-
-
+**Why this target:** This measures me, not the model, and it is the only evidence I have that my own 200 labels mean the same thing on every post. The 30 staff posts were chosen partly because they are ambiguous, and I am applying someone else's taxonomy (`analysis` / `hot_take` / `reaction`) rather than my three labels, so I set the bar below what I would want for my own set.
 
 ---
 
