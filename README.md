@@ -54,33 +54,92 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `question`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** a post whose main work is to get an answer from other people; it lays out a problem or a choice but does not conclude anything itself.
 
 **Example 1:**
+> **"ROLAND FP-30X vs Yamaha P-225 vs something else?"** — Digital Piano Question
 >
+> "I want to buy my first digital piano. I played an acoustic piano many years ago,
+> and now I want to return to my hobby. I'll be using it in an apartment, so I need
+> both a headphone output and on-board speakers. … Is there anything else in the
+> $500–1000 range I should look at, or what is the best from these options?"
+>
+> https://www.reddit.com/r/piano/comments/1mh66fq/roland_fp30x_vs_yamaha_p225_vs_something_else/
 
 **Example 2:**
+> **"Tension in this spot in Ballade 3"** — Question/Help (Intermed./Advanced)
 >
+> "My upper arm seems to always tense up in this spot. Interestingly though, I
+> experience almost no tension in the spot right before this, where the RH is
+> jumping all over the place. What would you do to try to fix this?"
+> *(the post also contains a photo of the passage)*
+>
+> https://www.reddit.com/r/piano/comments/1x99yrv/tension_in_this_spot_in_ballade_3/
+
+### `experience`
+
+**Definition:** a post whose main work is to report what happened to the author and what they concluded from it; it does not hand the reader something they can act on directly.
+
+**Example 1:**
+> **"Playing by ear is so freeing compared to learning with sheet music"**
+> — Let's Discuss This
+>
+> "Two months ago I got a new piano, and I decided that I would try again at this
+> playing by ear thing. I started with using the chords as a guide then eventually
+> moving to just using my ears. … Maybe after around 1 to 2 minutes I can play the
+> chorus of whatever song I like! Compared to before when I would spend at least
+> 5 min looking for the sheets…"
+>
+> https://www.reddit.com/r/piano/comments/1wtzna5/playing_by_ear_is_so_freeing_compared_to_learning/
+
+**Example 2:**
+> **"New experience"** — Discussion
+>
+> "From then i had only one thing in mind: to learn at least one song from the
+> start to the end. … And after a couple of month of dedication daily i actually
+> just been able to play it from the start to the end … I just feel So blessed to
+> accieve this little step and i wanted to share it with someone."
+>
+> https://www.reddit.com/r/piano/comments/13hnfo9/new_experience/
+
+### `resource`
+
+**Definition:** a post whose main work is to hand the reader something they can act on directly — a file, a link, a setting, a checklist, or an explicit procedure; it does not mainly narrate the author's own experience.
+
+**Example 1:**
+> **"I transposed Christian Schäfer's Sight Reading Exercises (Op. 45) into all 12 keys"**
+> — Useful Resource
+>
+> "It always annoyed me with most sight-reading and method books that beginner
+> pieces are almost exclusively in C, G, or F. … I took Christian Schäfer's Op. 45
+> sight-reading exercises and re-engraved it, putting every piece through all 12
+> keys. … It's completely free, no email sign-up or paywall, just direct PDF links."
+>
+> https://www.reddit.com/r/piano/comments/1x9q9yz/
+
+**Example 2:**
+> **"Piano repertoire spreadsheet template"** — Resource
+>
+> "Hello! I made a spreadsheet for my repertoire and wanted to share it with you
+> all. … It includes 235 pieces aproximately within the range of Grade 3 ABRSM …
+> You have a link to all the sheet music. That's it! Enjoy."
+>
+> *(the post ends with "I would love to know what you think about it" — a closing
+> invitation, not a request for information; see the decision rule)*
+>
+> https://www.reddit.com/r/piano/comments/172y0dp/piano_repertoire_spreadsheet_template/
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `resource` vs `question`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule I used every time:** If a post hands over something usable
+**only as background for a question it is actually asking**, it is `question` —
+the author wants an answer and the file is evidence. If the thing is the point
+and the question is only a closing invitation ("let me know what you think"),
+it is `resource`.
 
 
 
@@ -162,9 +221,14 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* "Here are my three label definitions for r/piano posts.
+  Write eight posts that sit exactly on the boundaries between them. Don't label them."
+- *What came back:* one post handed over a spreadsheet and ended with "I would love
+  to know what you think about it". Under my original rule — handed over something
+  + asked a question → `question` — that post was a `question`, which felt wrong.
+- *What I changed:* rewrote the decision rule. The artifact has to be *background
+  for a real question* to count as `question`; if the artifact is the point and the
+  question is a closing invitation, it stays `resource`.
 
 **Moment 2**
 
