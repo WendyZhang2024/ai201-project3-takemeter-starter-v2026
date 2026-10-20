@@ -39,10 +39,15 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-
-
+r/piano is a public forum where players of every level ask for help, report what
+they are practising, and share things they have made. This classifier sorts a post
+into one of three kinds by what the post is *doing*, not by what it is about:
+`question` (the author wants an answer and commits to no conclusion of their own),
+`experience` (the author reports what happened to them and what they concluded),
+and `resource` (the author hands the reader something usable — a file, a link, a
+setting, or an explicit procedure). The distinction matters here because a post
+that asks something and a post that tells you something need different replies,
+and the two often look identical from the title.
 
 ---
 
@@ -147,77 +152,88 @@ it is `resource`.
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
+**Where the posts came from:** r/piano, the week of 13–20 October 2026. I kept only posts with a real text body of at least 200 characters, and dropped
+stickied, removed and NSFW posts. 
 
-**Where the posts came from:**
-
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** All 240 by hand, using the three definitions above and the
+decision rule. The 20 `cold` rows were labelled first, with no tools, no AI and no
+second opinion; they are marked `cold` in the `note` column. The remaining 220 are
+marked `manual`. I did not use AI to pre-label any post.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `question` | 155 | 64.6% |
+| `experience` | 59 | 24.6% |
+| `resource` | 26 | 10.8% |
+| **Total** | 240 | 100% |
+
+`question` is under the 70% cap but is still the majority class: a model that
+always predicts it scores 64.6% accuracy without learning anything.
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* "Blind Listening Exercise #2" — seven recordings of the Goldberg
+> Variation 3 with timestamps, ending with "I want to hear your thoughts,
+> critiques, and pianist guesses in the comments".
 >
-> *Could have been:*
+> *Could have been:* `resource` or `question`.
 >
-> *I chose, because:*
+> *I chose, because:* the exercise is the thing being handed over — the
+> recordings and the timestamps are usable without the author. "I want to hear
+> your thoughts" is a closing invitation, not a request for information the
+> author lacks, so the decision rule keeps it as `resource`.
 
 **2.**
-> *The post:*
+> *The post:* "How do you recover from a bad performance/exam?" — a long report
+> of an exam (73/100, a disappointed jury, "problematic passages") that ends
+> with "I don't know how I can put even more energy into this".
 >
-> *Could have been:*
+> *Could have been:* `question` or `experience`.
 >
-> *I chose, because:*
+> *I chose, because:* the exam story exists to support the question in the
+> title; the author reaches no conclusion of their own and is asking how to
+> recover. The main work is the question, so it is `question`.
 
 **3.**
-> *The post:*
+> *The post:* "Listing old (bad) rep in college app?" — ten years of playing
+> history, a change of teacher, and a closing request for what conservatory
+> applicants would do about listing old repertoire.
 >
-> *Could have been:*
+> *Could have been:* `experience` or `question`.
 >
-> *I chose, because:*
+> *I chose, because:* the body is almost entirely the author's history and what
+> changed in the past year, and the questions are about the author's own
+> situation at the end. The main work is the report, so it is `experience`, even
+> though the title is a question.
 
 ---
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased` (Hugging Face), fine-tuned for 3-way
+sequence classification.
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, max length 128 tokens,
+seed 42. Trained on `cpu` (torch 2.14.1+cpu).
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** Nothing. This is the notebook's
+default configuration, unchanged.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Split sizes:** 168 train / 36 validation / 36 test (70/15/15, stratified). Per
+label in the test split: `question` 23, `experience` 9, `resource` 4. `resource`
+is below the ~8 the brief warns about, so on four test posts a single error moves
+its F1 by about 0.25.
 
-
+The run completed and wrote `results.json` and `test_split.csv`: accuracy 0.639,
+macro F1 0.260. The model predicted `question` for all 36 test posts.
 
 ---
 
 ## How I Used AI
-
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
 
 **Moment 1**
 
@@ -232,11 +248,20 @@ of next unit's variance. -->
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* "Here are my five acceptance criteria. For each one, say
+  whether a reader who never spoke to me could take the measurement and check the
+  outcome."
+- *What came back:* the targets were not checkable as written. They did not say
+  which split the number is measured on, or that it has to hold in every seed, so
+  "accuracy at least 0.65" could be read as the validation split, the test split,
+  or an average of the two.
+- *What I changed:* every criterion now names the held-out test split and "in each
+  of the three seeds", and the accuracy target states the 0.50 majority-class
+  baseline it is measured against.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** None. I did not use AI to pre-label any post. All 240
+rows were labelled by hand; the 20 rows I labelled first, with no tools, are marked
+`cold` in `labels.csv`, and the remaining 220 are marked `manual`.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
