@@ -277,18 +277,65 @@ rows were labelled by hand; the 20 rows I labelled first, with no tools, are mar
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.194 | 0.639 | +0.445 |
+| Macro F1 | 0.149 | 0.260 | +0.111 |
+| F1 — `question` | 0.267 | 0.780 | +0.513 |
+| F1 — `experience` | 0.000 | 0.000 | +0.000 |
+| F1 — `resource` | 0.182 | 0.000 | −0.182 |
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+
+I expect the baseline to beat my trained model on `experience` and `resource`,
+and to lose on overall accuracy. My unit 5 run predicted `question` for all 36
+test posts and scored F1 0.00 on the other two labels, so *any* baseline that
+ever answers `experience` or `resource` correctly wins those two columns
+outright. The interesting number is accuracy: mine was 0.639, so if the
+baseline lands near that too, my fine-tuning learned nothing beyond the
+majority class.
+
+*Written before running `python baseline.py`, so it is a prediction rather than
+a summary.*
 
 **What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
+
+Half my prediction held. The baseline did win `resource` (0.182 against 0.000)
+and did lose overall accuracy, exactly as I wrote. What I got wrong is
+`experience`: I expected the baseline to win that column too, and both models
+scored 0.000 — neither ever predicts it.
+
+But the shape of the gap is not "trained model good, baseline bad". Over the
+same 36 posts:
+
+| Strategy | Accuracy |
+|---|---|
+| Always `question` (the majority class) | 0.639 |
+| Always `experience` | 0.250 |
+| Always `resource` | 0.111 |
+| **The baseline** | **0.194** |
+
+The baseline labelled 29 of 36 posts `resource` — the smallest class, 4 posts —
+and never once said `experience`. So it collapsed, but collapsed toward the
+*rarest* label, which is why it scores below every lazy strategy except
+always-`resource` itself. The trained model also collapsed, but toward the
+*majority* label, which is the cheaper and rational way to fail.
+
+That reframes what fine-tuning bought. It bought 0.445 of accuracy and 0.513 of
+`question` F1, and essentially nothing on the two labels that carry the
+taxonomy's actual distinctions: `experience` is 0.000 for both models, and the
+only reason `resource` looks better for the baseline is that 4 posts make F1
+move in jumps of 0.14. The honest reading is that 200 examples did not teach
+the smallest labels, and that my baseline is a weak opponent because its prompt
+pointed it at the wrong class.
+
+I think the prompt is why. `resource` has the longest and most concrete
+definition — "a file, a link, a setting, a checklist, or an explicit
+procedure" — and a general model given three definitions of unequal
+concreteness will drift toward the one that looks like a checklist item. It
+found artefacts in plain questions. A prompt that describes one label more
+tangibly than the others is not neutral, and that is the first thing I would
+measure next: the same baseline with bare label names and no definitions at
+all, to see whether my definitions helped or hurt.
+
 
 
 

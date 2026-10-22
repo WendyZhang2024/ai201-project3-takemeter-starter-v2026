@@ -1,0 +1,214 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 36,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 36,
+    "accuracy": 0.19444444444444445,
+    "f1_macro": 0.1494949494949495,
+    "per_label": {
+      "experience": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 9
+      },
+      "question": {
+        "precision": 0.5714285714285714,
+        "recall": 0.17391304347826086,
+        "f1": 0.26666666666666666,
+        "support": 23
+      },
+      "resource": {
+        "precision": 0.10344827586206896,
+        "recall": 0.75,
+        "f1": 0.18181818181818182,
+        "support": 4
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "Grade 7 ABRSM\n\nI am 55 F and I moved  to Grade 7 in September.  Before I had completed 7-8 pieces of Grade 6 with the teacher. Unexpectedly, I've found that Grade 7 is too difficult. I'm currently learning Beethoven's Scherzo and C.P.E. Bach's Rondo Espressivo. The Grade 6 pieces took me about a month each, but I've been learning the Scherzo for a month and a half and have only just come close to the required tempo.  Is Grade 7 really my ceiling for my age?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "I composed this little piece, let me know what you think about it!\n\nI wanted to express a journey rather than creating \u201ethe most beautiful melody\u201c.   \nI hope you like this simple musical journey, I\u2019m very open for feedback and your opinion of course. \n\nIt\u2019s not finished but that\u2019s the main idea.",
+      "gold": "resource",
+      "predicted": "question"
+    },
+    {
+      "text": "Beethoven Waldstein Sonata fingerings & Teacher drama, helpp\n\nSo...\n\nI have started to learn Waldstein Sonata, starting with the first movement. I bought an urtext edition of it, but in bars 35-41 I am troubled on what fingers to put.\n\nI don't like how the fingers swap from 4-5 on the same quarter notes, there are some awkward hand positions and stretches, so I made my own fingerings that have some changes (in orange) and they felt comfortable fast. I looked at different editions to see what different fingerings they have.\n\nThen I went to my piano lesson and my teacher gave me other fingerings to put on that section (in red).\n\n(She hasn't played this piece)\n\nShe didn't like my fingers because apparently it won't work at fast tempo and it needs to be as legato as possible without pedal for a start.\n\nI tried to tell her that I didn't agree because all those finger swappings on both hands on each quarter is crazy to play at fast speed, it will be pedaled anyway, and it literally hurts my hands.\n\nShe said that there is no way she is gonna let me do whatever I want and that I need to practice it untill I can do it even if it hurts, she said my fingers will adapt. \n\nI mean idk whether she is right or not but I can't force myself to do something that literally tenses my hand up in awkward positions. Am I wrong in this?\n\nShe also can't think outside of the box in general.\n\nShe has this other edition with even weirder fingering suggestions and she said I have to do it exactly as it is because it's always correct, and she is always correct and I'm always wrong.\n\nShe believes whatever works for her works for me.\n\nShe never played her fingering suggestion fast so I can see if it works and she tried my fingerings and couldn't do it...\n\nThere are more crazy things she has said to me, she even made me cry once in lesson because she was making me dig into crazy details that I had to perfect on the spot, my mind was exploding.\n\nAfter every lesson I left annoyed and agitated. \n\nIt's not just that, i'll have her untill I get my piano diploma.\n\nShe is very stubborn about her opinions and isn't open minded when I tell her my opinion. But at the same time I feel like she doesn't know what she really wants. She has even told me \"Oh so now you are the teacher? Don't be disrespectful, This is what I believe,  if you don't like it get another teacher\".\n\nSo yeah plzz someone try these different fingerings in the images, tell me what you think of them.\n\n(my fingerings in orange, my teacher's in red (sorry they are a bit hard to read))\n\nIf you have any fingering suggestions please share them.\n\nOr any advice on how to deal with my teacher I would really appreciate it!",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "Brahma Intermezzo Op.117/2 feedback\n\nHello, I have been working on this Intermezzo by Brahms for the past couple of months and this is where I am at.\n\nThere's a couple mistakes in here and an \"error 404 note not found\" moment as well, but more than anything I would appreciate thoughts on how I could make this more... interesting? It wounds a bit stiff imho. I have been struggling quite a bit, there is something about this piece I can't quite put my finger on. \n\nPlay it with more emphasis on large intervals in the melody - doesn't sound quite right and overly romanticised\n\nPlay it with quite a bit more rubato - sounds unstable and loses sense of flow/rhythm\n\nPlay it in tempo - sounds a bit like a perpetuum mobile etude thing\n\nLooking for advice and inspiration!\n\nThank you",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Piattino Caster Cups - Any know if they actually work from a neighbour's persepctive?\n\nI know Piattino caster cups have been around for ages, and my understanding is that their primary purpose is to reduce vibrations from the piano touching the floor to stop the resonances reaching your neighbours, particularly those below you in an apartment setting. \n\nI can find reviews, but does anyone have any experience of them working? As in, neighbours complained, bought the expensive caster cups, and now they're happy?\n\nMy neighbours are fine, but I also try to be a good neighbour. I'd happily buy them just as an extra buffer if anyone could say they made a difference in their situation.",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Please help me with Ballade no.1 CODA!\n\nHi, I\u2019m a self taught pianist who\u2019ve been playing for 8 years (roughly)  \nI\u2019m recently working on Chopin\u2019s Ballade no. 1, but the CODA is stressing me a lot.  \nEspecially the Ab - G - F# - G part, where you flip octaves.   \nThe biggest difficulty is to play Octave with Fifths (ex. Ab - Eb - Ab) and Thirds (Bb - D - Bb).  \nBut what I\u2019m concerned about is that I can\u2019t quite explain why my hands are so stiff around phrase 00:20 in the video.  \nIs it just lack of practice or is it my hand span, or both? (Fyi, my hand span is barely a 9th. I can reach octaves but hardly 9th.)\n\nP.S. For someone who knows how to deal with Bar 130 - 133, please leave it in the comments, too.\n\nThank you so much!\u201d",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "Chopin's 3rd ballade\n\nI heard it for the first time in May. I thought this ballade was cursed, because every time I listened to it I felt depressed and hopeless. The climax was so intense, that I couldn't atop thinking about it in my head. I reckon this piece is one of the most touching, deep and incredible work of his genius. \n\nIt's not that popular as first ballade is, but I have to admit it's nothing in comparison to the third one. \n\nWhile the 1st ballade is cheerful and hopeful, the 3rd is at some point mysterious, heartbreaking, breathtaking(literally i felt that way). I was so impressed by feelings I experienced, that at some point I thought Chopin understood me and I understood him. Even though it seems a bit depressive, but it's a story about inner struggle with happy ending. \n\nI wonder what people think about this ballade. Has anyone experienced the same? I would really like to hear your story and what impressed you more. \n\nP.S. I write poetry in Ukrainian( cuz I'm Ukrainian) \n\nI was really impressed by this piece. I'll leave it here, maybe some Ukrainians will read it and give their thoughts. \n\n\u0410\u0440\u0444\u0430\n\n\u0423 \u043f\u043e\u043b\u0456 \u0432\u043a\u0440\u0438\u0442\u0438\u043c \u043a\u0440\u0438\u0448\u0442\u0430\u043b\u0435\u043c, \n\n\u200e\u0411\u0456\u043b\u044f \u043f\u0456\u0434\u043d\u0456\u0436\u0436\u044f \u0433\u043e\u0440\u0438 \u043a\u0440\u0438\u0436\u0430\u043d\u043e\u0457 \n\n\u200e\u0420\u043e\u0437\u0431\u0438\u0432\u0441\u044f \u0442\u0430\u0431\u0456\u0440 \u043c\u0430\u043d\u0434\u0440\u0456\u0432\u043d\u0438\u0439, \n\n\u200e\u041b\u044e\u0431\u0438\u0442\u0435\u043b\u0456\u0432 \u043f\u0440\u0438\u0433\u043e\u0434\u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u043e\u0457. \n\n\u200e\n\n\u200e\u041d\u0430 \u0440\u0430\u043d\u043e\u043a \u043f\u043e\u0447\u0430\u043b\u0430\u0441\u044f \u043a\u0430\u0437\u043a\u0430.\n\n\u200e\u041f\u0456\u0448\u043b\u0438 \u0430\u043c\u0430\u0442\u043e\u0440\u0438 \u0432 \u043f\u043e\u0445\u0456\u0434. \n\n\u200e\u041d\u0435 \u0432\u0440\u044f\u0442\u0443\u0432\u0430\u043b\u0430 \u043d\u0430\u0432\u0456\u0442\u044c \u043a\u0430\u0441\u043a\u0430, \n\n\u200e\u0411\u0456\u043b\u044f\u0432\u0430 \u043b\u0430\u0432\u0438\u043d\u0430 \u0437\u0440\u043e\u0431\u0438\u043b\u0430 \u0441\u0432\u0456\u0439 \u0445\u0456\u0434.\n\n\u200e\n\n\u200e\u0412\u0435\u0440\u0448\u0438\u043d\u0443 \u0446\u044e \u043d\u0456\u0445\u0442\u043e \u043d\u0435 \u043f\u0456\u0434\u043a\u043e\u0440\u0438\u0432.\n\n\u200e\u041b\u0438\u0448 \u0432\u0456\u0442\u0435\u0440 \u0434\u043e\u0442\u043e\u0440\u043a\u043d\u0443\u0432\u0441\u044f \u043f\u0456\u043a\u0443. \n\n\u200e\u0406 \u043d\u0430\u0432\u0456\u0442\u044c \u0415\u043e\u043b\u0430 \u0441\u0438\u043b\u044c\u043d\u0438\u0439 \u043f\u043e\u0440\u0438\u0432\n\n\u200e\u0420\u043e\u0437\u0431\u0438\u0432\u0441\u044f \u043e\u0431 \u043a\u0430\u043c\u0456\u043d\u044c \u043f\u043e\u0432\u0430\u0436\u043d\u043e\u0433\u043e \u0432\u0456\u043a\u0443. \n\n\u200e\n\n\u200e\n\n\u200e\u0417'\u044f\u0432\u0438\u043b\u0430\u0441\u044c \u0443 \u043f\u043e\u043b\u0456 \u0441\u0430\u043c\u043e\u0442\u043d\u044f \u0434\u0443\u0448\u0430. \n\n\u200e\u0417\u0430\u0442\u044c\u043c\u0430\u0440\u0438\u043b\u0430 \u0440\u043e\u0437\u0443\u043c \u0442\u0430\u0454\u043c\u043d\u0438\u0447\u0430 \u0456\u043c\u043b\u0430. \n\n\u200e\u0406 \u0442\u0430\u043c \u0432\u0434\u0430\u043b\u0438\u043d\u0456, \u0443 \u0442\u043e\u043c\u0443 \u0442\u0443\u043c\u0430\u043d\u0456, \n\n\u200e\u0412\u0438\u0434\u043d\u0456\u043b\u043e\u0441\u044f \u0441\u044f\u0439\u0432\u043e, \u0442\u043e \u043a\u043b\u0438\u0447\u0435 \u0433\u043e\u0440\u0430.\n\n\u200e\n\n\u200e\u0406 \u0432\u0436\u0435 \u0456\u0434\u0435 \u0434\u0443\u0448\u0430 \u043f\u0456\u0434\u0439\u043e\u043c\u043e\u043c.\n\n\u200e\u0422\u044f\u0436\u0456\u0454 \u0441\u0435\u0440\u0446\u0435, \u043a\u0440\u043e\u043a \u0456 \u043a\u0440\u043e\u043a. \n\n\u200e\u0421\u0432\u0438\u0441\u0442\u044f\u0442\u044c \u0432\u0435\u0440\u0448\u0438\u043d\u0438 \u0439 \u0432\u0456\u0442\u0435\u0440 \u0445\u043e\u0440\u043e\u043c, \n\n\u200e\u0410\u0436 \u043f\u0440\u043e\u0431\u0438\u0440\u0430\u0454 \u0434\u043e \u043a\u0456\u0441\u0442\u043e\u043a.\n\n\u200e\n\n\u200e\u041d\u0435 \u043c\u0456\u0441\u0446\u0435 \u0441\u043c\u0435\u0440\u0442\u043d\u0438\u043c \u0432 \u0446\u0430\u0440\u0441\u0442\u0432\u0456 \u043b\u044c\u043e\u0434\u0443.\n\n\u200e\u041f\u0430\u043d\u0438 \u0442\u0443\u0442 \u0441\u0442\u0440\u0430\u0445, \u0431\u0430\u0439\u0434\u0443\u0436\u0456\u0441\u0442\u044c \u0439 \u0433\u043d\u0456\u0432. \n\n\u200e\u0412\u043e\u043d\u0438 \u0443\u0431'\u044e\u0442\u044c, \u043b\u0438\u0448 \u0434\u0430\u0439 \u043d\u0430\u0433\u043e\u0434\u0443. \n\n\u200e\u041d\u0456\u0445\u0442\u043e \u0457\u0445 \u0449\u0435 \u043d\u0435 \u043f\u0435\u0440\u0435\u043c\u0456\u0433. \n\n\u200e\n\n\u200e\u041f\u0443\u0441\u043a\u0430\u044e\u0442\u044c \u043f\u0430\u0440\u0443 \u0434\u0440\u0438\u0436\u0430\u0447\u0456 \u043b\u0435\u0433\u0435\u043d\u0456,\n\n\u200e\u0406 \u0442\u0456\u043b\u043e \u043f\u0430\u0434\u0430\u0454 \u043d\u0430 \u0441\u043d\u0456\u0433.\n\n\u200e\u041f\u0440\u043e\u0431\u0438\u0432\u0430\u0454\u0442\u044c\u0441\u044f \u0441\u044f\u0439\u0432\u043e \u0432 \u043e\u0447\u0456 \u0431\u043b\u0430\u0436\u0435\u043d\u043d\u0456.\n\n\u200e\u041f\u0440\u0438\u043f\u0430\u043b\u0430 \u043d\u0430\u0434\u0456\u044f \u0434\u043e \u0441\u0430\u043c\u0456\u0441\u0456\u043d\u044c\u043a\u0438\u0445 \u043d\u0456\u0433. \n\n\u200e\n\n\u200e\u0406 \u0431'\u0454\u0442\u044c\u0441\u044f \u0432\u0441\u0435\u0440\u0435\u0434\u0438\u043d\u0456 \u0445\u043e\u043b\u043e\u0434\u043d\u0430 \u043d\u0430\u0442\u0443\u0440\u0430:\n\n\u200e\"\u0422\u0440\u0435\u0431\u0430 \u0432\u0441\u0442\u0430\u0432\u0430\u0442\u0438, \u0442\u0440\u0435\u0431\u0430 \u0456\u0442\u0438...\"\n\n\u200e\u0420\u0435\u0433\u043e\u0447\u0435 \u0432 \u043b\u0438\u0446\u0435 \u043a\u0440\u0438\u0436\u0430\u043d\u0430 \u0437\u0430\u0432\u0456\u0440\u044e\u0445\u0430, \n\n\u200e\u0420\u043e\u0437\u0440\u0438\u0432\u0430\u0454 \u0441\u043d\u0456\u0436\u0438\u043d\u043a\u0430\u043c\u0438 \u0439\u043e\u0433\u043e \u043d\u0430 \u0448\u043c\u0430\u0442\u0438. \n\n\u200e\n\n\u200e\u0406 \u0440\u043e\u0437\u0443\u043c \u0441\u043f\u043e\u0432\u043d\u0435\u043d\u0438\u0439 \u0431\u0435\u0437\u0443\u043c\u0441\u0442\u0432\u043e\u043c,\n\n\u200e\u0406 \u043a\u0440\u043e\u0432 \u0441\u0442\u0456\u043a\u0430\u0454 \u043d\u0430 \u0447\u043e\u043b\u0456.\n\n\u200e\u041a\u043e\u043c\u0443 \u043f\u043e\u0442\u0440\u0456\u0431\u043d\u0456 \u0445\u0438\u0436\u0456 \u0433\u043e\u0440\u0438?! \n\n\u200e\u0407\u0445 \u043d\u0435 \u0437\u0434\u043e\u0431\u0443\u0434\u0435\u0448 \u043d\u0430 \u043a\u043e\u043d\u0456!\n\n\u200e\n\n\u200e\u0406 \u043e\u0442 \u0432 \u0442\u0430\u0454\u043c\u043d\u043e\u043c\u0443 \u0441\u0432\u0456\u0442\u0456\u043d\u043d\u0456 \n\n\u200e\u041f\u043e\u0441\u0442\u0430\u0432 \u043d\u0435\u0431\u0435\u0441\u043d\u0438\u0439 \u0441\u0438\u043b\u0443\u0435\u0442.\n\n\u200e\u0414\u0443\u0448\u0430 \u0432 \u0431\u0435\u0437\u043c\u0435\u0436\u043d\u043e\u043c\u0443 \u0442\u044f\u0436\u0456\u043d\u043d\u0456 \n\n\u200e\u0422\u0430\u043d\u0446\u044e\u0454 \u0441\u043f\u0440\u0430\u0432\u0436\u043d\u0456\u0439 \u043c\u0435\u043d\u0443\u0435\u0442... \n\n\u200e\n\n\u200e\n\n\u200e\u041d\u0430\u0441\u0442\u0430\u0432 \u0436\u0430\u0434\u0430\u043d\u0438\u0439 \u0447\u0430\u0441 \u0442\u0440\u0456\u0443\u043c\u0444\u0443,\n\n\u200e\u0420\u043e\u0437\u043d\u0435\u0441\u0435 \u0446\u044e \u0441\u043b\u0430\u0432\u0443 \u0415\u043e\u043b \u043f\u043e\u043c\u0456\u0436 \u0433\u0456\u0440.\n\n\u200e\u0406\u0441\u0442\u043e\u0440\u0456\u044e \u0434\u0443\u0448\u0456, \u0449\u043e \u0437'\u0457\u0445\u0430\u043b\u0430 \u0437 \u0433\u043b\u0443\u0437\u0434\u0443.\n\n\u200e\u0410, \u043c\u043e\u0436\u0435, \u0434\u043e\u043b\u0456 \u0441\u0442\u0440\u0430\u0448\u043d\u0438\u0439 \u043d\u0435\u043f\u043e\u043a\u0456\u0440?\n\n\u200e\n\n\u200e\u0423 \u043f\u043e\u043b\u0456 \u0432\u043a\u0440\u0438\u0442\u0438\u043c \u043a\u0440\u0438\u0448\u0442\u0430\u043b\u0435\u043c,\n\n\u200e\u0411\u0456\u043b\u044f \u043f\u0456\u0434\u043d\u0456\u0436\u0436\u044f \u0433\u043e\u0440\u0438 \u043a\u0440\u0438\u0436\u0430\u043d\u043e\u0457. \n\n\u200e\u0420\u043e\u0437\u0431\u0438\u043b\u0430\u0441\u044f \u0430\u0440\u0444\u0430 \u0443 \u043f\u043e\u0448\u0443\u043a\u0430\u0445 \u0432\u043e\u043b\u0456, \n\n\u200e\u0407\u0457 \u0436\u0432\u0430\u0432\u0430 \u043f\u0456\u0441\u043d\u044f \u0434\u043e\u0433\u0440\u0430\u043b\u0430 \u0432 \u043c\u0430\u0436\u043e\u0440\u0456.\n\n\u200e\n\n\u200e\n\n\u200e30.06.2026 \u0440.\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 \u043c. \u041d\u044c\u044e\u0431\u0435\u0440\u0456 \n\n\u200e",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "Getting back into piano after a long break - looking for piece recommendations\n\nHey everyone,\n\nI\u2019m thinking about getting back into playing piano after not really playing for years. As a kid, I had around 7 years of lessons, but I was never one of those super talented students. I can read sheet music, but not well enough to just sit down and sight-read a piece. I usually learn through repetition and eventually memorizing things.\n\nThe pieces I can still kind of play from memory are *La Dispute* by Yann Tiersen, a couple of pieces from *Am\u00e9lie*, some easier pieces by Ludovico Einaudi (definitely not perfectly anymore \ud83d\ude05), and parts of *F\u00fcr Elise*. That's about the highest level I ever reached.\n\nI'm looking for beautiful pieces that are fun to play and not too overwhelming. They don't have to be pop songs. Classical, film music, contemporary piano pieces, anything with a great melody is welcome. \n\nAlso, for those of you who have come back after a long break: What pieces would you recommend?\n\nIs it better to practice 10-20 minutes every day, or do longer sessions once or twice a week?\n\nAny tips for getting back into it without burning out or getting frustrated?\n\nI'm definitely not a natural talent, but I can be disciplined when I enjoy what I'm working on.\n\nThanks! \ud83e\udef6",
+      "gold": "experience",
+      "predicted": "question"
+    },
+    {
+      "text": "A little help? \ud83e\udd7a\n\nI\u2019ve been reading books and slowly teaching myself piano over the course of a couple weeks now. I\u2019ve gotten to the point where I can slowly read some notes on sheet music and have been practicing with small snippets of songs out of my books.\n\nIm currently practicing this little melody out of one my books but im confused as to how you slur the same note in a row like the sheet suggests? It wants me to slur middle C twice. When i googled it, it was suggested that I hit the middle C key lighter on the second note but then another source said to hold the sound for the entire 4 beats. Theres no marking that indicates the damper pedal should be held down either.\n\nAny advice would be appreciated!",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "is this elite at all or not really and how much do you know?\n\n120 wpm perfectly as a kid ?? \n\n  \nWhen I say perfectly I mean no mistakes were made once \n\n  \nI sustained it for 1 minute\n\n  \nI could probably do it again but I'm kinda tired\n\n  \nCan do half court shots too <3",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Which collection would you learn A to Z?\n\nOver your lifetime as a pianist, which collection would you want to learn in its entirety? Would you even consider doing this in the first place?\n\nFor example, quite a few people learn the whole Chopin Etudes, or Beethoven sonatas. Has anyone on here done this? I'm not talking about learning only this one work in one go and nothing else, but learning it over a couple of years and keeping it as something to study over and over.\n\nI'll go first. Collections I'm interested in (in order):\n\n* Chopin Etudes\n* Bach WTC\n* Liszt Transcendental Etudes\n* Debussy Preludes\n* Beethoven sonatas\n\nI'm quite drawn to Chopin Etudes for some reason. I think I just like figuring out the different techniques, and some are among my favourite Chopin pieces from a pure musical perspective (25/12, 25/5, 25/1, 10/9).\n\nI'm reading through the whole WTC bit by bit. I've finished reading through book 1, and now I'm using it for warming up for my evening practice. I tend to spend some time on specific preludes and sometimes fugues, so I'll probably learn them all eventually. Plus is fascinating.\n\nLiszt TEs are probably my second pick after Chopin's. The problem is how hard they are. I'm not entirely sure I'll ever be able to even get the hardest ones up to 80% or 90% polish, most likely not. And I'm not a big fan of all of them (no. 1 huh). But there's something about this work that's got a legendary aura and some of these etudes are peak music (no. 11 is my favourite).\n\nDebussy Preludes are also very very interesting to me. There's so much variety in them, and they aren't as hard technically as other collections. I'll probably read through all of them as well and maybe work on about at least half of them over time.\n\nThe last one is... tricky. So many people love all Beethoven sonatas, but I don't really see the appeal. Some of them are among my favourite pieces of all times, but some others are quite meh (I dropped Op. 10 no. 3 this year, I just didn't enjoy the first movement to put in the work). I might read through all of them slowly, but I doubt I'll ever try to properly learn them all.\n\nThere are so many other good choices. Mozart or Haydn sonatas, Scarlatti sonatas (I'm also reading through all of them, one a day, I'm at K179), Scriabin sonatas (this would be really hard plus I don't like no. 4 and no. 1), etc.\n\n**My personal pick would be Chopin Etudes**. I think I could spend a lifetime on this and not get bored. I'd pick Liszt TEs second if it wasn't for its difficulty, so I suppose I'd pick the WTC (also difficult but in a different way).\n\nWhat's yours? Is there any book or collection you love and have fully learnt or are planning to? Ideally around 1h or longer (aka. not something short like Brahms op. 117).\n\nI'm secretly hoping that someone will say \"all Czerny etudes\" :D",
+      "gold": "experience",
+      "predicted": "question"
+    },
+    {
+      "text": "Help with Saint-Sa\u00ebns PC2 opening cadenza?\n\nHello,\u00a0\n\nI'm starting to work on the opening of Saint-Sa\u00ebns 2nd concerto and I would love some outside (\"pro\") opinion on the fingering of a specific pattern.\u00a0\n\nI have no problem with the initial upward movement. Both hand finally land a diminished 5th appart (A - Eb) and start a parallel scale downward: still no issue. My problem is with the broken diminished seventh arpeggios, zigzagging all the way down the keyboard a sixth appart.\n\nThe isolated pattern goes:\n\nRH:\u00a0 Eb-F# C-Eb \u00a0 A-C \u00a0 F#-A Eb...\n\nLH:\u00a0 F#-A \u00a0 Eb-F# C-Eb A-C \u00a0 F#...\n\nFor the right hand, my fingering for the above is 23 14 15 34, and I'm pretty quite happy with that. I didn't have to look for it, it literally jumped at me.\n\nThe left hand is where I was a doubt. If I play left-hand alone, the \"right\" fingering for me is 32 41 32 51. It's very fluid that way.\n\nBUT, when I bring hands together, the left hand always goes to 32 41 32 ***41*** 32 41 32 ***41***. The 5 gets replaced by a 4. It works too, but I know/feel the other one, with the 5, is more efficient, more elegant, more relaxed for my hand. I think the 4 gets in there because on the right hand we have \"34\", and the 4 fingers on each hand must be somehow connected. Especially since the whole pattern also has 2 mirror occurences (23 againts 32, 14 against 41)\n\nSo, that's not a terrible issue. I think 32 41 32 41 can work at tempo. But it grates on me, I have a feeling the other one (32 41 32 51) is intrinsically better and the very fact that the right hand makes good use of 51 to reposition makes me think the left hand ought to do so as well. And I'm afraid this \"hidden connection\" between mirrored fingers is a false friend and will come to bite me later on.\n\nI've been working on this for 30\" and I'm at a point where I can do both at a slow pace but I still need to focus to stick in the 5. What do you think? Should I let go and let it be with 4 (I'm ready to bring the tempo up), or should I persist on slow practive until the 5 soaks in?\n\nThanks for reading, and sorry for the long and very specific rant :)",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "i need a piano friend\n\ni\u2019ve been playing piano for multiple years now, mostly self-taught with some teaching (i started as a kid but stopped playing for some reason for a long time and resumed when i reached high school) and still haven\u2019t met anyone who feels as passionate about piano playing as i do. not to sound pretentious, but the people i\u2019ve met that play, just play tiktok songs like mrs magic and others similar to that. i only play classical and i just want someone to chat with or to help me with any questions i have about any scores. i would consider myself intermediate level, but my goals are to do a concert in front of an audience and to reach that advanced level.",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "Blind Listening Exercise #2: Bach Goldberg Variations Var. 3\n\nHere are 7 recordings of the third variation from the Goldbergs, I want to hear your thoughts, critiques, and pianist guesses in the comments below! You can share your order of preference, and send a direct message (DM) to get the performer's names.\n\n1. 0:00\n2. 1:33\n3. 3:39\n4. 5:21\n5. 6:37\n6. 8:22\n7. 10:00\n\nTimestamps\\^",
+      "gold": "resource",
+      "predicted": "resource"
+    },
+    {
+      "text": "For a beginner, how good is a keyboard for learning?\n\nIs a keyboard worth getting? Are they expensive? I wanna pick up piano soon but I'm unsure of how to approach it because pianos are pretty huge. I already play guitar (which im alright at) but I think learning piano would be cool so I'm very interested in it. Anyway any help is appreciated.",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Stuck on the first 12 bars of Mozart K. 545 for 5 months\n\nHi everyone,\n\nI've been self-teaching piano for over 2 years and have been working on the first 12 measures of Mozart\u2019s Sonata in C Major (K. 545) for the past 5 months.\n\nHonestly, it feels like I've hit a complete wall. I don't feel my tone or mechanics getting any better, especially on the scale passages and transitions. It feels like I'm stuck in the middle of nowhere.\n\nI tried seeking professional guidance, but I couldn't find a local teacher who met basic standards. The ones I tried kept dodging my specific goals with K. 545, playing carelessly, overusing the sustain pedal to muddy everything, and not even strictly following the score. So I\u2019m back to strictly self-studying.\n\nI\u2019ve attached a short clip of my playing.\n\n* **Should I keep pushing through these same 12 bars?**\n* **Should I \"reset\" and restart my approach from scratch?**\n* **Or is there something fundamental about how I\u2019m practicing that needs to change?**\n\nAny honest feedback on my technique or guidance on how to move forward would be greatly appreciated. Thanks!",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Scales\n\nI\u2019m an adult beginner with no musical background. I take lessons once a week from a great instructor, going on 2 years of lessons now. She has never taught me scales. My kids, now grown, took lessons from 4-18 from a different instructor and they never learned scales. \n\nShould I learn and do scales on my own? Is that something would benefit my progression?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Am I ready for Une Barque sur l'ocean?\n\nI am an amateur pianist who played piano as a hobby for 12 years. I enjoy listening to Ravel and Debussy pieces, and I have found this piece as one of my favorites.   \n  \n  \nThese are the pieces that I have played recently.\n\n\\- Un sospiro, Liebestraum 3rd  \n\\- Chopin op 10 no 1, working on op 10 no 12  \n\\- Ballade 1  \n\\- Pathetique sonata movements 1,2,3  \n\n\nI haven't tried any other pieces from these two composers except for Clair de Lune which I played years ago. Would it be fine to give it a go?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "self-learning piano from zero, 2 weeks progress\n\nHello, can I have some general feedback? Self learning. Never touched piano before until 2 weeks ago, but Ive been playing on guitar for long years, so Im quite familiar with theory and anything else that could translate from guitar to piano. Bought Sequential Fourm synth for tone generation and M-Audio midi controller for input. Thanks!",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Questions about teaching my 6yo who is an absolute beginner\n\nI've started giving my 6yo daughter piano lessons. I found my old copy of John Thompsons Easiest Piano Course which I used 40 years ago. She is enjoying it. I was thinking of getting a piano teacher, but now that I've given her a few lessons I've found it a lovely time to spend with her.\n\nMy questions are:\n\n \\* Is John Thomson's book now considered dated?\n\n \\* Should I just get a qualified teacher, even at this early stage?\n\n \\* Is there anything else I should know?\n\nSome details about me: I can (or at least could!) play the piano fairly well. My high point was probably performing Beethoven's Piano Sonata No. 7 in a competition 20 years ago and coming first. However I have zero experience of actually teaching, and I wouldn't say it's something I'm naturally good at.",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Tension in this spot in Ballade 3\n\nMy upper arm seems to always tense up in this spot. Interestingly though, I experience almost no tension in the spot right before this, where the RH is jumping all over the place. What would you do to try to fix this?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Questions I have about hours / practice in piano\n\nSome people say that the best pianists practice for more than 10 hours every day, while others argue that practicing for just 2\u20134 hours with deep focus is sufficient.\n\nWho is right? I\u2019ve encountered both perspectives, but they generally boil down to two main ideas:\n\n\\- \"You need to put in as many hours as possible to reach a high level of proficiency\".\n\n\\- \"You should practice for fewer hours to ensure the practice is effective; adding more hours won\u2019t necessarily lead to improvement\u2014and might even be counterproductive\".\n\nI\u2019d love to hear your thoughts: how many hours do you think one should practice?\n\nAlso, a follow-up question: do you think one should practice every single day?\n\nSome people recommend taking one day off per week\u2014meaning without touching the piano\u2014to let your hands rest and keep your mind fresh. Others insist on practicing every day (perhaps taking a vacation or an occasional rest day every few months). Still others suggest practicing daily, but with varying levels of intensity.\n\nWould you recommend taking one day off from the piano each week, or should one practice every single day?\n\nTL;DR\n\n1. How many hours should be played in piano for best improvement? Not many like 1-2, or in the middle like 3-6 range, o even like +10? (of course thinking in terms of you having that much time)  \n2. Do you recommend playing piano everyday, or taking all weeks a day off without piano, or which type of schedule?  \n3. Do you think less hours are better for improvement that too much hours?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Is this the standard way to make piano videos with falling notes, or is there a better method?\n\nHey everyone!\n\nI want to start recording videos of myself playing the piano, with a video showing my hands and falling notes synced to the music, similar to the piano videos you often see on YouTube.\n\nI came across this tutorial:  \n[https://www.youtube.com/watch?v=tu6VZrB9bCc](https://www.youtube.com/watch?v=tu6VZrB9bCc)\n\nIs this the standard approach people use for making these kinds of videos, or are there better alternatives nowadays?\n\nI'd appreciate any recommendations for software or alternative methods!\n\nThanks in advance!",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Someone please suggest good beginner digital piano with 88 keys within 150 to 200 USD\n\nHello, I\u2019ve been looking to start learning piano but couldn\u2019t figure out what should I buy  \nMy budget isn\u2019t that much and cheaper and good otooins would be better because I don\u2019t wanna invest too much right now  \nIn future if I do really like it then I\u2019ll buy a better one but I would love suggestions on something that I could start right away   \nCheaper would be great!",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Which piece should I learn for a competition?\n\nI (17) will participate in a piano competition in April. I am level 9 in RCM. I have been learning for 10 years. Here are a few pieces I have learned recently:\n\n\\- Prelude in C Major by Bach\n\n\\- Interstellar by Hanz Zimmer (piano arrangement)\n\n\\- Nocturne in Eb Major by Chopin\n\n\\- Sonata in C Major K330 by Mozart \n\nWhich piece do you think would be best for me to learn? Or should I go with one I have already learned?\n\n  \nIf you need any more information so that you can give better suggestions, please let me know.\n\nThank you in advance.",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Pianos and humidity\n\nI live in Austin, where it is hot and humid much of the year, and my upright piano has been unplayable for the last 6 months.  Keys sticking all over the place.  We keep the thermostat at 78 degrees... is that just going to be too warm?  Does it depend on the kind of piano I have?  Can keys be filed down or something? Not willing to keep house at 72 just for the sake of the piano.",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Playing some Rachmaninoff for Jolie\n\nhttps://reddit.com/link/1x60ow5/video/b2wus8otfhvh1/player\n\nStill learning this part by ear, I hope you like it! \n\nThe piano which I am playing on is a Bluthner Style VI built in 1903, which I recently collected this year. It still has all of its original parts apart from a few strings, which I replaced. My cat Jolie absolutely adores the sound of this piano! I will also do another post about this piano and my journey on repairing it myself.",
+      "gold": "resource",
+      "predicted": "resource"
+    },
+    {
+      "text": "The Modern Pianist\n\nAs I was returning to my piano to resume my practice session after making myself a cup of coffee, I couldn\u2019t help but notice this most modern of setups: VST -> audio interface -> digital/hybrid piano-> headphones. And then the sheet music on an iPad.",
+      "gold": "resource",
+      "predicted": "resource"
+    },
+    {
+      "text": "[BEGINNER] Roland FP-10 vs FP-40 s FP-60X\n\nHello! l'm a beginner just starting out, with no prior experience playing the piano.\n\nI've found a few pianos at online stores: an FP-10 for $730 (including a stand and bench), an FP-40 for $1,010 (including a stand and pedal), and an FP-60X for $1,260 (including a stand).\n\nI was wondering whether there would be a noticeable enough difference between these three models to justify the price increase. I can afford any of them, so it's really just a matter of whether the upgrades are worth it for longterm.\n\nThanks for your advice!\n\n(I'm purchasing in India, so the prices will differ from those in the US. I've converted them to USD for easier comparison.)",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Is it possible to learn piano by myself?\n\nI've taken music for 5 years in school so I do have a bit of theory knowledge (I only wanted to play music lol)\n\nI can play the guitar and the trumpet and briefly took piano lessons 2 years ago but I had to quit with how busy I was. I got discouraged so now my keyboard is just sitting in my room collecting dust. I have somewhat knowledge on proper technique like posture, how my hands should look like, and how to cross over my fingers.\n\nI'd want to get back into piano lessons but my mother would kill me since I already quit last time.\n\nIs it possible that maybe in a few years I can get to a level where I can perform just by teaching myself?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Classical pieces to get it back\n\nQuick intro, I took classical piano for about 12 years and it\u2019s been around 10 years since I stopped lessons. I play occasionally, but not enough to keep it up. What are some intermediate classical pieces that you guys loved playing but also helped you get your technique developed?",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "Does anybody know what this piece is called?  It was part of a landscape book (longer across than up and down) with piano duets.  I think one of the songs was Penny Whistle by Gwynn.\n\nI looked up on Google app and sang the song:  \u201dno results found\u201d.  The Google app searches the entire web.  With Vocaroo, it just posts it to groups where someone might hear the song and tell you what it is.  \n\nMeasure 1:  D DE FE D\n\nMeasure 2: D DE FE D\n\nMeasure 3: G GA BflatA G\n\nMeasure 4: D (3/4 note) A\n\nMeasure 5: GAG E E G\n\nMeasure 6: FGF D D F\n\nMeasure 7: EC#A EDB\n\nMeasure 8: A ABflat AF FE\n\nMeasure 9: D DE FE D\n\nMeasure 10: D DE FE D\n\nMeasure 11: G GA BflatA G\n\nMeasure 12: D(3/4 note) ABC#\n\nMeasure 13: DD AA FF E\n\nMeasure 14: A A G F E \n\nMeasure 15: D\n\nI\u2019ve always wanted to know what it was called.",
+      "gold": "question",
+      "predicted": "resource"
+    },
+    {
+      "text": "why is this sub filled with miserable people\n\nGenuinely one of the most toxic places   \ni uploaded a vid for the first time and the comments were just filled with actual horrible people that can\u2019t even give proper critique (and whats funnier is that i checked most of their profiles and they are beginner level at best)  \nnot like i care i have been playing the piano for 10 years and i am pretty decent but i feel bad for anyone new that gets on here  \ni played in orchestras and bands since i have been a kid and the good news is that the actual community with real humans aren\u2019t toxic and they\u2019re the best people i ever met!!!!  \nthat\u2019s why i was shocked when i posted here  \ni genuinely can\u2019t understand why but yeah that\u2019s about it",
+      "gold": "experience",
+      "predicted": "resource"
+    },
+    {
+      "text": "19 yr and I\u2019m absolutely fascinated and in love with Liszt\u2019s sonata\n\nThe piece is most likely a bit too hard for me at the moment but I can\u2019t stop listening to it. I feel like it\u2019s such a perfect piece and was wondering if anyone else had this love for the piece and I would like to hear what others interpretations of the piece are? The sonata\u2019s themes have always stuck out to me to appear more as distinct characters more then any other piece I\u2019ve ever listened to! Does anyone else agree? What characters do you think the different themes represent?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "Which composers wrote for piano the best?\n\nNot necessarily your favorite composer for the piano, I mean in terms of how well-suited the techniques are for pianists. I personally think Chopin is the most ergonomic, and also Bach, Rachmaninoff, Liszt, Mendelssohn, Debussy, Mozart.\n\nOn the other hand, there are a lot of composers who did not write very well for the piano despite being brilliant composers with amazing and famous works. Like Schumann, Brahms, Ravel, and a lot of late Beethoven.\n\nYour thoughts?",
+      "gold": "question",
+      "predicted": "question"
+    },
+    {
+      "text": "1918 Ellington Upright Piano for $250 - First Piano\n\nI got my first piano about 10 days ago for FREE off of Facebook Marketplace. I've been using an old keyboard, and always wanted a piano. This started three weeks ago at my local thrift store. I saw a huge pedal organ, Victorian, wood carving, it was gorgeous. I thought about getting it, but I still wanted a piano as it's more useful than an organ in the long run. So.. I found this one on Facebook. It's a circa 1918 Ellington made by Baldwin. The owner was moving, and if nobody reached out, it was going to the dump. Just in time, 5 days before, I inquired so we got it checked out and the only cost was $250 to move it to my house. It's not tuned yet, but the tuner/mover says it's not far off. Good shape, just dirty and well used. I wonder what stories it's got, if it was in a home, or a church, or a saloon or something. Don't have much information but it was incredibly cheap and I'm happy to have my own piano.",
+      "gold": "experience",
+      "predicted": "resource"
+    }
+  ]
+}
