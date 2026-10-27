@@ -420,53 +420,64 @@ direction, toward the majority label.
 
 ## Agreement Report
 
-<!-- Your rate against the staff set, and every disagreement adjudicated.
+**Agreement rate:** 28 / 30 = 93%
 
-     Remember you labelled these 30 under the STAFF taxonomy in
-     data/staff_taxonomy.md, not your own — so every argument below is made
-     from those definitions and those decision rules. -->
-
-**Agreement rate:** ___ / 30 = ___%
-
-<!-- Nobody grades this number. A 60% who argues every disagreement from the
-     stated rules beats a 95% who wrote "staff was right" nine times. Several
-     of the 30 were chosen because they're genuinely ambiguous — you should be
-     winning some of these. -->
+I labelled all 30 under the staff taxonomy before I opened
+`data/staff_labels.csv`, and committed `my_staff_labels.csv` first (`84321ac`),
+so the two sets are independent.
 
 **Disagreements**
 
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
+**1. `sp_005` — staff said `analysis`, I said `reaction`**
 
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
+> *The post:* "Carbon plates aren't the whole story. My times dropped 2% in the
+> shoes and another 2% the following year in the same pair, when the only thing
+> that changed was going from 35 to 50 miles a week."
 
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
+> *Staff said / I said:* `analysis` / `reaction`
 
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+> *My call, and why:* Staff is right, and rule 3 is the reason: immediacy does
+> not outrank evidence. The post makes a general claim — carbon plates are not
+> the whole story — and backs it with two measurements plus a controlled change
+> in weekly mileage. The numbers carry the argument, which is exactly rule 1's
+> test. I labelled it `reaction` because it is written in the first person, but
+> first person appears nowhere in the definitions as a downgrade. What makes
+> this a consistency problem rather than a one-off is that `sp_002`, `sp_007`,
+> `sp_008` and `sp_010` have the same shape — *I measured X and got Y* — and I
+> labelled all four `analysis`, which staff also agreed with.
 
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+> *Which pile:* **(a)** — the rule covered it; I applied it loosely and
+> inconsistently.
+
+**2. `sp_020` — staff said `hot_take`, I said `analysis`**
+
+> *The post:* "Every injury thread on this forum is the same injury and the
+> same three replies."
+
+> *Staff said / I said:* `hot_take` / `analysis`
+
+> *My call, and why:* Staff is right. `hot_take` is defined as a confident
+> claim with no support offered, and this post offers no number, no example and
+> no quote — "the same three replies" reads like a count, but none of the three
+> is ever named. I treated "I have read a lot of threads and noticed a pattern"
+> as if the pattern were evidence, but the definitions ask what support is in
+> the post, not what the author might have seen. That is me reading generously,
+> not the rule being unclear.
+
+> *Which pile:* **(a)** — the rule covered it; I read it too generously.
 
 **What the pattern in my disagreements tells me:**
+
+Both errors come from the same shortcut: I classified by what the post *felt*
+like instead of running rule 1's test. `sp_005` felt personal, so I downgraded
+it even though two load-bearing numbers were sitting in it; `sp_020` felt like
+an observation, so I upgraded it even though there was no fact at all. One
+habit, pointing in two directions.
+
+That matters for the diagnosis below. It is a labelling problem, not a model
+problem — and at 2 in 30 (6.7%), the same rate applied to my own 240 rows would
+mean roughly 16 of them were labelled by feel rather than by my own written
+rule. A model cannot learn a boundary that its training data applies two ways.
 
 
 
