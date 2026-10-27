@@ -353,7 +353,10 @@ all three.
 | 2. Every label F1 (lowest label) | ≥ 0.50 | 0.000 | 0.000 | 0.000 | MISSED |
 | 3. Macro F1 | ≥ 0.60 | 0.260 | 0.260 | 0.260 | MISSED |
 | 4. Confidence gap (most-sure third − least-sure third) | ≥ 0.15 | 0.417 | 0.333 | 0.750 | MET |
-| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | pending (milestone 3) |
+| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | MET (28/30) |
+
+Criterion 5 is a single measurement over all 30 staff posts, not one per seed,
+so it carries no seed columns: 28/30 = 93%, from `agreement.py`.
 
 Criterion 2 is reported as that seed's **lowest** per-label F1, because the
 criterion says *every* label: `question` alone reaches 0.780, `experience` and
@@ -392,31 +395,60 @@ direction, toward the majority label.
 
 ## Verdicts and Diagnoses
 
-<!-- MET or MISSED against LAST UNIT's target. The target has to hold across
-     all three seeds, not turn up sometimes. -->
-
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.65 | **MISSED** | 0.639 in all three seeds. The target needs 24 of 36; the model gets 23, which is exactly the number of `question` posts in the split. |
+| 2 | Every label F1 | ≥ 0.50 | **MISSED** | `experience` and `resource` score 0.000 in every seed. Only `question` (0.780) clears the floor. |
+| 3 | Macro F1 | ≥ 0.60 | **MISSED** | 0.260 in all three seeds, less than half the target. |
+| 4 | Confidence gap | ≥ 0.15 | **MET** | 0.417 / 0.333 / 0.750, all above 0.15 — but see the note on this one below. |
+| 5 | Agreement with staff | ≥ 20/30 | **MET** | 28/30 = 93%, from `agreement.py`. |
 
 **Diagnoses**
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
+**1. Overall accuracy — the model never answers anything but the majority
+class.** The confusion matrix settles it: the `experience` and `resource`
+columns are entirely zero, so every non-`question` post was answered
+`question`. 0.639 is not a measurement of learning, it is the majority-class
+share — 23 of 36 — and 23 is exactly how many `question` posts each stratified
+split contains. The three seeds agree to three decimals for the same reason: the
+class counts are fixed by stratification and the prediction is constant, so
+there is nothing left to vary. The target needs 24 correct; the model reaches
+23 by never trying.
 
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
+Why this much data cannot reach it: 168 training rows, 3 epochs, a 65/25/11
+class balance. The gradient that would teach `experience` versus `question` is
+swamped by the gradient that teaches `question` every time.
 
+**2. Every label F1 — two causes that compound.** First, too few examples:
+`resource` has 26 rows in total and 4 in each test split, where one post moves
+F1 by about 0.14; `experience` has 59 rows and 9 in test. Second, a boundary I
+applied inconsistently, which is where the agreement report earns its place. I
+labelled 2 of 30 posts by feel rather than by rule — `sp_005` downgraded despite
+two load-bearing numbers, `sp_020` upgraded with no fact at all — and both went
+against the definitions I was supposed to be applying. At that rate, roughly 16
+of my own 240 rows carry a different reading of my own rule. The small labels
+are exactly where those boundaries are hardest, so a labelling problem lands
+hardest on the labels with the least data to absorb it. This is the one place
+where the evidence says *my labels*, not just *my model*.
 
+**3. Macro F1 — arithmetic, not a separate failure.** Macro F1 is the mean of
+the three per-label scores. With `question` at 0.780 and the other two at 0.000,
+the ceiling is 0.260. Fixing criterion 2 fixes this one; there is nothing
+independent left to diagnose.
 
----
+**A note on criterion 4, which passed for the wrong reason.** 0.417 / 0.333 /
+0.750 clear 0.15 in every seed, so the verdict is MET. But the gap is not
+calibration: mean confidence when the model is right is 0.699, and when it is
+wrong 0.678 — it is no more sure when it is correct. Since every prediction is
+`question`, the confidence thirds differ only in how many `question` posts each
+happens to contain. The criterion passed; the thing it was written to detect — a
+model that knows when it is unsure — is still absent.
+
+**No criterion was revised.** All five could be measured with the numbers I
+wrote in unit 5, so all five keep those numbers. A revision is only warranted
+when a criterion cannot be measured, and none of mine had that problem: the
+three misses are misses, not broken criteria.
+
 
 ## Agreement Report
 
