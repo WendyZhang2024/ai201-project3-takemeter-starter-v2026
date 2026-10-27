@@ -517,28 +517,71 @@ rule. A model cannot learn a boundary that its training data applies two ways.
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** one thing — the loss function. `WeightedTrainer` in notebook
+section 4 uses a cross-entropy weighted by inverse class frequency:
 
-**Which diagnosis pointed at it:**
+    weight[c] = len(train) / (3 * count[c])   →   ≈ 0.52 / 1.36 / 3.08
+
+for `question` / `experience` / `resource`. Nothing else moved: same 240 rows,
+same three seeds, same 3 epochs, same learning rate, same tokenizer, same
+`max_length`.
+
+**Which diagnosis pointed at it:** criterion 2's. The confusion matrix had
+all-zero columns for `experience` and `resource`, and the training set is
+155/59/26 — a majority class worth 65% of the data. If the model is never
+penalised more for missing a 26-row class than for missing a 155-row one, the
+cheapest way to minimise loss is to predict the big class every time, which is
+exactly what it did. I could not use the instruction's first option (add 30
+examples to `resource`) because this repo has no pool of unlabelled posts, so
+re-weighting the existing rows was the closest available version of that fix.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.667 | 0.639 | 0.611 | MISSED |
+| 2. Every label F1 (lowest label) | ≥ 0.50 | 0.000 | 0.000 | 0.000 | MISSED |
+| 3. Macro F1 | ≥ 0.60 | 0.331 | 0.446 | 0.361 | MISSED |
+| 4. Confidence gap (most-sure third − least-sure third) | ≥ 0.15 | 0.333 | 0.250 | 0.500 | MET |
+| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | MET (28/30) |
+
+Before and after, side by side:
+
+| Measure | Before (42 / 7 / 2024) | After (42 / 7 / 2024) |
+|---|---|---|
+| Overall accuracy | 0.639 / 0.639 / 0.639 | 0.667 / 0.639 / 0.611 |
+| Macro F1 | 0.260 / 0.260 / 0.260 | 0.331 / 0.446 / 0.361 |
+| F1 — `experience` | 0.000 / 0.000 / 0.000 | 0.200 / 0.600 / 0.000 |
+| F1 — `resource` | 0.000 / 0.000 / 0.000 | 0.000 / 0.000 / 0.333 |
+| Spread in accuracy | 0.000 | 0.056 |
+| Spread in macro F1 | 0.000 | 0.115 |
 
 **Did it help, and how do I know:**
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+Partly — and the part it did not help is the more interesting half.
 
+It helped where the diagnosis pointed. Macro F1 rose from 0.260 in every seed to
+0.331 / 0.446 / 0.361, a mean of 0.379, which is +0.119. The all-zero columns
+are gone: seed 42 now gets 1 of its 9 `experience` posts right, and seed 2024
+gets 1 of its 4 `resource` posts. The collapse to the majority class is broken.
+The model is willing to predict a small label now, which is exactly what the
+weighting was for.
 
+It did not move a single criterion to MET. Accuracy lands at 0.611–0.667, so
+criterion 1 still fails two of the three seeds; `experience` and `resource` are
+still under 0.50 in at least two seeds, so criterion 2 fails; macro F1 tops out
+at 0.446 against a 0.60 target.
 
----
+And it cost stability. Before, the three seeds agreed to three decimals; now
+macro F1 spans 0.115 across seeds, past the notebook's own threshold for "too
+unstable to call". That is not noise the weighting added — it is noise the
+weighting exposed. With 26 `resource` rows, four of them in a test split, how
+much a 3× class weight helps depends on which four posts the seed drew. The
+before numbers looked stable only because a constant prediction cannot vary.
+
+So the diagnosis had the right mechanism, the change attacked the right thing,
+and the ceiling was never the loss function: it is 26 labelled examples. The
+next real move is more `resource` data, not another training setting.
 
 ## What's Still Broken
 
