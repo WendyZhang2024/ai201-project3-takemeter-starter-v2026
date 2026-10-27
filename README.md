@@ -259,21 +259,45 @@ macro F1 0.260. The model predicted `question` for all 36 test posts.
   of the three seeds", and the accuracy target states the 0.50 majority-class
   baseline it is measured against.
 
+**Moment 3 (unit 6)**
+
+- *What I asked for:* "Here are the 30 labels I gave the staff posts, plus two
+  I am unsure about (`sp_005`, `sp_020`). Are those two errors the same kind of
+  mistake, or two different ones?" (This was before `agreement.py` had been run —
+  those two turned out to be exactly the disagreements it later reported.)
+- *What came back:* two different directions, one habit — I had classified by
+  what the post *felt* like instead of running rule 1's test. The useful part was
+  the follow-up question: if "first person" was my reason for downgrading
+  `sp_005`, then `sp_002`, `sp_007`, `sp_008` and `sp_010` should have been
+  downgraded too, and they were not.
+- *What I changed:* I filed both as pile (a) instead of arguing. Checking the
+  four structurally identical posts is what settled it: my "first person" reading
+  was not the rule I had actually applied to them, so the problem was my
+  application, not the definition. I then used the rate (2 in 30) as the
+  labelling evidence in the diagnosis for criterion 2, which changed that
+  diagnosis from "the model is too small" to "the model is small *and* my labels
+  are noisy".
+
+**Moment 4 (unit 6)**
+
+- *What I asked for:* "Three seeds gave identical numbers to three decimals. Is
+  that stability?"
+- *What came back:* no. `split_dataset()` stratifies, so every split holds 23
+  `question` / 9 `experience` / 4 `resource` posts; a model that answers
+  `question` every time therefore scores 23/36 in every seed. The zero spread
+  measures the stratification, not the model.
+- *What I changed:* deleted the claim that the numbers were stable and wrote the
+  mechanism into the run log instead. It became the first diagnosis.
+
 **Pre-labelling disclosure:** None. I did not use AI to pre-label any post. All 240
 rows were labelled by hand; the 20 rows I labelled first, with no tools, are marked
 `cold` in `labels.csv`, and the remaining 220 are marked `manual`.
 
-<!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
-
-     Don't fill these in during unit 5.
-     ═══════════════════════════════════════════════════════════════════ -->
+**Unit 6 disclosure:** the 30 labels in `my_staff_labels.csv` are mine. I did not ask the AI to label any post. What it did was explain the staff rules and point out where my labels contradicted them. That made me re-read all 30, and I changed 10 of them. But I kept 2 unchanged (`sp_005`, `sp_020`), and those two are exactly the disagreements `agreement.py`later reported. All of this happened before `data/staff_labels.csv` was opened; commit `84321ac` predates the download.
 
 ---
 
 ## Baseline vs. Trained
-
-<!-- Both models on the same posts. `python baseline.py --trained results.json`
-     prints this table for you. -->
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
@@ -282,6 +306,10 @@ rows were labelled by hand; the 20 rows I labelled first, with no tools, are mar
 | F1 — `question` | 0.267 | 0.780 | +0.513 |
 | F1 — `experience` | 0.000 | 0.000 | +0.000 |
 | F1 — `resource` | 0.182 | 0.000 | −0.182 |
+
+Both columns are the same 36 held-out posts — `test_split.csv`, written by the
+notebook and scored identically by `baseline.py` and by the fine-tuned model — so
+the two numbers are directly comparable.
 
 **What I predicted before I looked:**
 
@@ -353,10 +381,11 @@ all three.
 | 2. Every label F1 (lowest label) | ≥ 0.50 | 0.000 | 0.000 | 0.000 | MISSED |
 | 3. Macro F1 | ≥ 0.60 | 0.260 | 0.260 | 0.260 | MISSED |
 | 4. Confidence gap (most-sure third − least-sure third) | ≥ 0.15 | 0.417 | 0.333 | 0.750 | MET |
-| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | MET (28/30) |
+| 5. Agreement with staff labels | ≥ 20/30 | 28/30 | 28/30 | 28/30 | MET |
 
-Criterion 5 is a single measurement over all 30 staff posts, not one per seed,
-so it carries no seed columns: 28/30 = 93%, from `agreement.py`.
+Criterion 5 is measured once over all 30 staff posts, so the same 28/30 appears
+in each seed column — it is one measurement, repeated for the table's shape, not
+three independent draws. 28/30 = 93%, from `agreement.py`.
 
 Criterion 2 is reported as that seed's **lowest** per-label F1, because the
 criterion says *every* label: `question` alone reaches 0.780, `experience` and
@@ -520,7 +549,7 @@ rule. A model cannot learn a boundary that its training data applies two ways.
 **What I changed:** one thing — the loss function. `WeightedTrainer` in notebook
 section 4 uses a cross-entropy weighted by inverse class frequency:
 
-    weight[c] = len(train) / (3 * count[c])   →   ≈ 0.52 / 1.36 / 3.08
+    weight[c] = len(train) / (3 * count[c])   →   ≈ 0.51 / 1.37 / 3.11
 
 for `question` / `experience` / `resource`. Nothing else moved: same 240 rows,
 same three seeds, same 3 epochs, same learning rate, same tokenizer, same
@@ -543,7 +572,7 @@ re-weighting the existing rows was the closest available version of that fix.
 | 2. Every label F1 (lowest label) | ≥ 0.50 | 0.000 | 0.000 | 0.000 | MISSED |
 | 3. Macro F1 | ≥ 0.60 | 0.331 | 0.446 | 0.361 | MISSED |
 | 4. Confidence gap (most-sure third − least-sure third) | ≥ 0.15 | 0.333 | 0.250 | 0.500 | MET |
-| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | MET (28/30) |
+| 5. Agreement with staff labels | ≥ 20/30 | 28/30 | 28/30 | 28/30 | MET |
 
 Before and after, side by side:
 
@@ -585,15 +614,47 @@ next real move is more `resource` data, not another training setting.
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+Three criteria are still missed after the improvement. For each one: what I would
+do next, and why I stopped where I did.
 
+**Criterion 1 — accuracy ≥ 0.65.** Still missed (0.611–0.667). What I would do:
+add `resource` examples and re-run. The weighting lifted macro F1 by +0.119
+without moving accuracy at all, which says the remaining gap is data rather than
+model capacity — with 26 `resource` rows there is not enough signal for a
+three-class boundary to be worth learning. Why I stopped: this repo has no pool
+of unlabelled r/piano posts, so "add examples" means collecting and hand-labelling
+30+ new rows, and one unit is not enough time to do that with the care the first
+240 got. I would rather ship an honest miss than 30 hastily labelled rows.
 
+**Criterion 2 — every label F1 ≥ 0.50.** Still missed in at least two seeds
+(`experience` 0.200 / 0.600 / 0.000, `resource` 0.000 / 0.000 / 0.333). What I
+would do: re-label the `experience` ↔ `question` boundary across all 240 rows,
+because that is where the agreement report says my rule application is
+inconsistent. Why I stopped: the report gives me the *rate* of inconsistency (2
+in 30, so roughly 16 rows in 240) but not *which* rows — finding them means
+re-reading every row against the rule, which is a full relabelling pass, not a
+unit-6 change.
+
+**Criterion 3 — macro F1 ≥ 0.60.** Still missed (0.331–0.446). This one is not
+independently broken: it is the mean of the three per-label scores, so it cannot
+pass while criterion 2 fails. There is nothing separate to fix.
+
+**What the improvement did not change.** It did not move a single criterion to
+MET, and it made the three seeds disagree for the first time. Both are results
+rather than failures: the disagreement is the honest measurement that a constant
+predictor was hiding.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
 
-
+I meant the three labels to describe *what a post is doing* — asking, reporting,
+handing something over — but the model only ever learned *how a post is
+written*. In the before run it predicted `question` for all 36 posts and scored
+0.00 on the other two labels, which is a surface cue (a question mark, "help",
+"recommend"), not the distinction I wrote down. Even after the improvement it
+recovers 1 of 9 `experience` posts in seed 42 and 1 of 4 `resource` posts in seed
+2024, so what it found is a glimpse of those classes' vocabulary, not their
+boundary.
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
