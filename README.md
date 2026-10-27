@@ -221,7 +221,9 @@ sequence classification.
 seed 42. Trained on `cpu` (torch 2.14.1+cpu).
 
 **Anything I changed from the defaults, and why:** Nothing. This is the notebook's
-default configuration, unchanged.
+default configuration, unchanged. (Unit 6 later added a class-weighted loss in
+`WeightedTrainer`; this section and `results.json` describe the unweighted run,
+and `results_three_seeds_before.json` was produced with the unweighted trainer.)
 
 **Split sizes:** 168 train / 36 validation / 36 test (70/15/15, stratified). Per
 label in the test split: `question` 23, `experience` 9, `resource` 4. `resource`
@@ -309,7 +311,9 @@ rows were labelled by hand; the 20 rows I labelled first, with no tools, are mar
 
 Both columns are the same 36 held-out posts — `test_split.csv`, written by the
 notebook and scored identically by `baseline.py` and by the fine-tuned model — so
-the two numbers are directly comparable.
+the two numbers are directly comparable. The Trained column is seed 42 from the
+original unweighted run (`results.json`), so both columns describe the same 36
+posts and the same split.
 
 **What I predicted before I looked:**
 
@@ -434,36 +438,47 @@ direction, toward the majority label.
 
 **Diagnoses**
 
-**1. Overall accuracy — the model never answers anything but the majority
-class.** The confusion matrix settles it: the `experience` and `resource`
-columns are entirely zero, so every non-`question` post was answered
-`question`. 0.639 is not a measurement of learning, it is the majority-class
-share — 23 of 36 — and 23 is exactly how many `question` posts each stratified
-split contains. The three seeds agree to three decimals for the same reason: the
+**1. Overall accuracy — too few examples of the two small labels.** The cause is
+the class balance: 155 `question` rows against 59 `experience` and 26
+`resource`, which leaves the training split at 109 / 41 / 18. At that ratio the
+cheapest way to lower the loss is to answer `question` every time, and the
+confusion matrix shows exactly that — the `experience` and `resource` columns are
+entirely zero. 0.639 is not a measurement of learning, it is the majority-class
+share: 23 of 36, and 23 is exactly how many `question` posts each stratified
+split contains. The three seeds agree to three decimals for the same reason — the
 class counts are fixed by stratification and the prediction is constant, so
-there is nothing left to vary. The target needs 24 correct; the model reaches
-23 by never trying.
+there is nothing left to vary. The target needs 24 correct; the model reaches 23
+by never trying.
 
-Why this much data cannot reach it: 168 training rows, 3 epochs, a 65/25/11
-class balance. The gradient that would teach `experience` versus `question` is
-swamped by the gradient that teaches `question` every time.
+**2. Every label F1 — too few examples, and a boundary the text does not
+show.** Two causes, and the evidence for both comes from my own 240 rows.
 
-**2. Every label F1 — two causes that compound.** First, too few examples:
-`resource` has 26 rows in total and 4 in each test split, where one post moves
-F1 by about 0.14; `experience` has 59 rows and 9 in test. Second, a boundary I
-applied inconsistently, which is where the agreement report earns its place. I
-labelled 2 of 30 posts by feel rather than by rule — `sp_005` downgraded despite
-two load-bearing numbers, `sp_020` upgraded with no fact at all — and both went
-against the definitions I was supposed to be applying. At that rate, roughly 16
-of my own 240 rows carry a different reading of my own rule. The small labels
-are exactly where those boundaries are hardest, so a labelling problem lands
-hardest on the labels with the least data to absorb it. This is the one place
-where the evidence says *my labels*, not just *my model*.
+*Too few examples.* `resource` has 26 rows in total and 4 in each test split,
+where one post moves F1 by about 0.14; `experience` has 59 rows and 9 in test.
+Four posts is not a measurement.
+
+*A boundary that is not visible on the surface of the text.* I meant the labels
+to describe what a post is doing, but the cue a model can actually find is how
+the post looks. In my data 27 of 59 `experience` posts (46%) contain a question
+mark, against 129 of 155 `question` posts (83%) — a weak cue in both directions
+— and in the test split 6 of the 9 `experience` posts carry one. Median length
+points the same way: `experience` posts run 840 characters against 539 for
+`question`, so length separates them a little too. With 168 training rows the
+reachable rule is "a question mark means `question`", which is right four times
+in five on the majority class and wrong on the minority, and that is why all 9
+`experience` test posts were answered `question`.
+
+The staff-set result (2 in 30, both from judging by feel) is a hint about how I
+label, not a measured error rate on these 240 rows: it used a different taxonomy
+(`analysis` / `hot_take` / `reaction`), so it cannot tell me how often I split
+`experience` from `question` inconsistently. What it does say is that when I work
+from a rule I did not write, my first pass drifts.
 
 **3. Macro F1 — arithmetic, not a separate failure.** Macro F1 is the mean of
 the three per-label scores. With `question` at 0.780 and the other two at 0.000,
-the ceiling is 0.260. Fixing criterion 2 fixes this one; there is nothing
-independent left to diagnose.
+the ceiling is 0.260. The cause is the one in diagnosis 2 — two labels with too
+few examples and a boundary the text does not make visible — so there is no
+separate fix for this one: fixing criterion 2 fixes it.
 
 **A note on criterion 4, which passed for the wrong reason.** 0.417 / 0.333 /
 0.750 clear 0.15 in every seed, so the verdict is MET. But the gap is not
@@ -497,15 +512,26 @@ so the two sets are independent.
 
 > *Staff said / I said:* `analysis` / `reaction`
 
-> *My call, and why:* Staff is right, and rule 3 is the reason: immediacy does
-> not outrank evidence. The post makes a general claim — carbon plates are not
-> the whole story — and backs it with two measurements plus a controlled change
-> in weekly mileage. The numbers carry the argument, which is exactly rule 1's
-> test. I labelled it `reaction` because it is written in the first person, but
-> first person appears nowhere in the definitions as a downgrade. What makes
-> this a consistency problem rather than a one-off is that `sp_002`, `sp_007`,
-> `sp_008` and `sp_010` have the same shape — *I measured X and got Y* — and I
-> labelled all four `analysis`, which staff also agreed with.
+> *My call, and why:* Staff is right. `reaction` is defined as "an immediate
+> response to something that just happened … usually about the writer's own
+> experience, in the last few hours", so writing in the first person is not the
+> test on its own — both qualifiers have to hold. They do not hold here: the post
+> compares two seasons a year apart, so nothing "just happened", and its claim is
+> general ("carbon plates aren't the whole story") rather than a report of a
+> moment. Rule 3 then applies — immediacy does not outrank evidence — and the two
+> 2% figures plus the controlled change in weekly mileage (35 → 50) are doing the
+> work in the argument. I labelled it `reaction` on the strength of the first
+> person, which is the mistake: person is not what the definition makes decisive.
+> What turns this from a one-off into a consistency problem is that `sp_002`,
+> `sp_007`, `sp_008` and `sp_010` have the same shape — *I measured X and got Y* —
+> and I labelled all four `analysis`, which staff also agreed with.
+>
+> One honest caveat: these are the writer's own numbers and a reader cannot
+> verify them — the same objection I raised in unit 5 against personal evidence.
+> I still read them as load-bearing, because the taxonomy asks whether the fact
+> does work in the argument, not whether an outsider can check it. That
+> distinction is mine rather than the taxonomy's, and it is exactly the kind of
+> thing that makes my labels drift.
 
 > *Which pile:* **(a)** — the rule covered it; I applied it loosely and
 > inconsistently.
@@ -539,6 +565,10 @@ That matters for the diagnosis below. It is a labelling problem, not a model
 problem — and at 2 in 30 (6.7%), the same rate applied to my own 240 rows would
 mean roughly 16 of them were labelled by feel rather than by my own written
 rule. A model cannot learn a boundary that its training data applies two ways.
+
+Caveat on the number itself: I revised 10 of the 30 labels after an AI explained
+the staff rules, so 28/30 is higher than my unaided agreement would have been.
+Read the 6.7% as a lower bound on my inconsistency, not as a clean estimate.
 
 
 
@@ -607,6 +637,11 @@ unstable to call". That is not noise the weighting added — it is noise the
 weighting exposed. With 26 `resource` rows, four of them in a test split, how
 much a 3× class weight helps depends on which four posts the seed drew. The
 before numbers looked stable only because a constant prediction cannot vary.
+
+One more side effect worth recording: the weighting also lowered the model's
+confidence. Mean confidence when it is right fell from about 0.70 to about 0.38,
+so criterion 4 stays MET on the gap, but its absolute values are no longer
+comparable with the before run.
 
 So the diagnosis had the right mechanism, the change attacked the right thing,
 and the ceiling was never the loss function: it is 26 labelled examples. The
