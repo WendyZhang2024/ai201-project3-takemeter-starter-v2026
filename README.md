@@ -343,32 +343,48 @@ all, to see whether my definitions helped or hurt.
 
 ## Run Log — Before
 
-<!-- Five criteria across three seeds. The notebook's section 6 prints the
-     spread table; the Target and Verdict columns are yours. -->
+Notebook section 6, run once across three seeds (`42`, `7`, `2024`) on CPU.
+Each column is one seed; the target comes from `criteria.md` and has to hold in
+all three.
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.639 | 0.639 | 0.639 | MISSED |
+| 2. Every label F1 (lowest label) | ≥ 0.50 | 0.000 | 0.000 | 0.000 | MISSED |
+| 3. Macro F1 | ≥ 0.60 | 0.260 | 0.260 | 0.260 | MISSED |
+| 4. Confidence gap (most-sure third − least-sure third) | ≥ 0.15 | 0.417 | 0.333 | 0.750 | MET |
+| 5. Agreement with staff labels | ≥ 20/30 | — | — | — | pending (milestone 3) |
+
+Criterion 2 is reported as that seed's **lowest** per-label F1, because the
+criterion says *every* label: `question` alone reaches 0.780, `experience` and
+`resource` are both 0.000, so the seed scores 0.000.
+
+The three seeds produced identical numbers (spread 0.000), and that is not
+stability. `split_dataset()` stratifies, so all three test splits hold exactly
+23 `question` / 9 `experience` / 4 `resource` posts even though the posts
+themselves differ — seed 42 and seed 7 share only 5 of their 36 posts. A model
+that answers `question` every time therefore scores 23/36 in every seed. The
+zero spread measures the stratification, not the model.
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
+Seed 42 — seeds 7 and 2024 produce the identical matrix, for the reason above.
 
-| true \ predicted |  |  |  |
+| true \ predicted | question | experience | resource |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **question** | 23 | 0 | 0 |
+| **experience** | 9 | 0 | 0 |
+| **resource** | 4 | 0 | 0 |
+
+Device: `cpu` (CPU only), torch `2.14.1+cpu`, `max_length` 128.
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
+
+9 real `experience` posts were labelled `question`, and 0 went the other way.
+The whole `experience` and `resource` columns are zero, so every non-`question`
+post was answered `question`. That is not a boundary the model learned badly —
+it is a boundary the model never predicted at all, and it only ever errs in one
+direction, toward the majority label.
 
 
 
